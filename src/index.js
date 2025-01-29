@@ -1,39 +1,37 @@
 import ReactDom from "react-dom/client";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+
 import Home from './views/Home/Home';
 import Dashboard from './views/Dashboard/Dashboard';
 import About from "./views/About/About";
 import Contact from "./views/Contact/Contact";
 
-function App () {
-const path = window.location.pathname;
-console.log(path);
-
-if (path == "/"){
-    root.render(<Home/>)
-}
-else if (path == "/Dashboard")
-{
-    root.render(<Dashboard/>)
-}
-else if (path == "/About")
-{
-    root.render(<About/>)
-}
-else if (path == "/Contact")
+const router = createBrowserRouter([
     {
-        root.render(<Contact/>)
+        path: "/",
+        element: <Home/>
+    },
+    {
+        path: "/About",
+        element: <About/>
+    },
+    {
+        path: "/Contact",
+        element: <Contact/>
+    },
+    {
+        path: "/Dashboard",
+        element: <Dashboard/>
     }
-else{
-    root.render(<h1>404 page not found</h1>)
-}    
-}
+])
+
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
-root.render(
-    <>
-    <App/>
-    </>
-)
+root.render(<RouterProvider router={router}/>)
+
+
+
 
 
